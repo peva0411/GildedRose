@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using GildedRose.Console.Strategies;
 
 namespace GildedRose.Console
 {
@@ -9,9 +10,26 @@ namespace GildedRose.Console
     {
         private readonly Item _item;
 
+        private readonly IUpdateQualityStrategy _updateQualityStrategy;
+
         public StoreItem(Item item)
         {
             _item = item;
+
+            _updateQualityStrategy = new DefaultUpdateQualityStrategy();
+
+            if (Name == "Aged Brie")
+            {
+                _updateQualityStrategy = new BetterWithTimeUpdateQualityStrategy();
+            }
+            if (Name == "Sulfuras, Hand of Ragnaros")
+            {
+                _updateQualityStrategy = new LegendaryUpdateStrategy();
+            }
+            if (Name == "Backstage passes to a TAFKAL80ETC concert")
+            {
+                _updateQualityStrategy = new BackstagePassUpdateQualityStrategy();
+            }
         }
 
         public string Name
@@ -32,6 +50,9 @@ namespace GildedRose.Console
 
         public void UpdateItemQuality()
         {
+            _updateQualityStrategy.UpdateQuality(this);
+            return;
+
             if (this.Name != "Aged Brie" && this.Name != "Backstage passes to a TAFKAL80ETC concert")
             {
                 if (this.Quality > 0)

@@ -44,7 +44,11 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StoreItemTests.cs" />
-    <Compile Include="TestAssemblyTests.cs" />
+    <Compile Include="Strategies\BackstagePassUpdateQualityStrategyTests.cs" />
+    <Compile Include="Strategies\BaseStrategyTest.cs" />
+    <Compile Include="Strategies\BetterWithTimeUpdateQualityStrategyTests.cs" />
+    <Compile Include="Strategies\DefaultUpdateQualityStrategyTests.cs" />
+    <Compile Include="Strategies\LegendaryUpdateQualityStrategyTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GildedRose.Console\GildedRose.Console.csproj">
