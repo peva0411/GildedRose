@@ -1,6 +1,6 @@
 ﻿namespace GildedRose.Console
 {
-    public class Item
+    public class Item //can't alter this class 
     {
         public string Name { get; set; }
 

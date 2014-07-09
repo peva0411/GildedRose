@@ -4,7 +4,7 @@ namespace GildedRose.Console
 {
     class Program
     {
-        IList<Item> Items;
+        IList<Item> Items; //can't alter this
        
         static void Main(string[] args)
         {
