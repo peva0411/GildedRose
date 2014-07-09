@@ -30,6 +30,10 @@ namespace GildedRose.Console
             {
                 _updateQualityStrategy = new BackstagePassUpdateQualityStrategy();
             }
+            if (Name == "Conjured Mana Cake")
+            {
+                _updateQualityStrategy = new ConjuredItemUpdateQualityStrategy();
+            }
         }
 
         public string Name
@@ -45,8 +49,25 @@ namespace GildedRose.Console
 
         public int Quality {
             get { return _item.Quality; }
-            set { _item.Quality = value; } }
+            protected set { _item.Quality = value; } }
 
+
+        public void IncrementQuality()
+        {
+            if (Quality < 50)
+                Quality++;
+        }
+
+        public void DecrementQuality()
+        {
+            if (Quality > 0)
+                Quality--;
+        }
+
+        public void Expire()
+        {
+            Quality = 0;
+        }
 
         public void UpdateItemQuality()
         {

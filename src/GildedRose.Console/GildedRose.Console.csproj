@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="Strategies\BackstagePassUpdateQualityStrategy.cs" />
     <Compile Include="Strategies\BetterWithTimeUpdateQualityStrategy.cs" />
+    <Compile Include="Strategies\ConjuredItemUpdateQualityStrategy.cs" />
     <Compile Include="Strategies\DefaultUpdateQualityStrategy.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="ItemQualityService.cs" />

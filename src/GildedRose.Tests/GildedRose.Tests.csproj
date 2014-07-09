@@ -47,6 +47,7 @@
     <Compile Include="Strategies\BackstagePassUpdateQualityStrategyTests.cs" />
     <Compile Include="Strategies\BaseStrategyTest.cs" />
     <Compile Include="Strategies\BetterWithTimeUpdateQualityStrategyTests.cs" />
+    <Compile Include="Strategies\ConjuredItemUpdateStrategyTests.cs" />
     <Compile Include="Strategies\DefaultUpdateQualityStrategyTests.cs" />
     <Compile Include="Strategies\LegendaryUpdateQualityStrategyTests.cs" />
   </ItemGroup>
