@@ -32,7 +32,7 @@ namespace GildedRose.Console
 
                           };
 
-            service.UpdateQuality(app.Items);
+            service.UpdateItemQuality(app.Items);
 
             System.Console.ReadKey();
 
