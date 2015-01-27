@@ -10,6 +10,7 @@ namespace GildedRose.Tests
     [TestFixture]
     public class ItemQualityServiceTests
     {
+        private int SYSTEM_MAX_Quality = 50;
 
         [Test]
         public void UpdateItemQuality_NormalItem_ReduceQualityByOne()
@@ -71,60 +72,58 @@ namespace GildedRose.Tests
             Assert.That(normalItem.Quality, Is.EqualTo(0));
         }
 
+        [Test]
+        public void UpdateItemQuality_AgedBrie_QualityShouldIncrease()
+        {
+            var qualityService = GetQualityService();
+
+            var agedBrie = ItemBuilder.DefaultItem()
+                .WithQualityOf(0)
+                .WithSellInOf(2)
+                .ItemAsAgedBrie()
+                .Build();
+
+            var startingQuality = agedBrie.Quality;
+
+            qualityService.UpdateItemQuality(agedBrie);
+
+            Assert.That(agedBrie.Quality, Is.EqualTo(startingQuality + 1));
+        }
+
+        [Test]
+        public void UpdateItemQuality_AgedBrie_QualityNeverGreaterThan50()
+        {
+            var qualityService = GetQualityService();
+
+          
+            var agedBrie = ItemBuilder.DefaultItem()
+                .WithQualityOf(SYSTEM_MAX_Quality)
+                .WithSellInOf(2)
+                .ItemAsAgedBrie()
+                .Build();
+
+            qualityService.UpdateItemQuality(agedBrie);
+
+            Assert.That(agedBrie.Quality, Is.EqualTo(SYSTEM_MAX_Quality));
+        }
+
+        [Test]
+        public void UpdateItemQuality_AgedBrieAfterSellin_QualityIncreaseBy2()
+        {
+            var qualityService = GetQualityService();
+
+            var agedBrie = ItemBuilder.DefaultItem()
+                .WithQualityOf(0)
+                .WithSellInOf(0)
+                .ItemAsAgedBrie()
+                .Build();
+
+            var startingQuality = agedBrie.Quality;
+
+            qualityService.UpdateItemQuality(agedBrie);
+
+            Assert.That(agedBrie.Quality, Is.EqualTo(startingQuality + 2));
+        }
 
     }
-
-    public class ItemBuilder
-    {
-        private Item _item;
-
-        public static ItemBuilder DefaultItem()
-        {
-            return new ItemBuilder();
-        }
-
-        public ItemBuilder()
-        {
-            _item = new Item();
-            _item.Name = "+5 Dexterity Vest";
-            _item.Quality = 20;
-            _item.SellIn = 10;
-        }
-
-        public ItemBuilder ItemAsAgedBrie()
-        {
-            _item.Name = "Aged Brie";
-            return this;
-        }
-
-        public ItemBuilder ItemAsSulfuras()
-        {
-            _item.Name = "Sulfuras, Hand of Ragnaros";
-            return this;
-        }
-
-        public ItemBuilder ItemAsBackstagePasses()
-        {
-            _item.Name = "Backstage passes to a TAFKAL80ETC concert";
-            return this;
-        }
-
-        public ItemBuilder WithQualityOf(int quality)
-        {
-            _item.Quality = quality;
-            return this;
-        }
-
-        public ItemBuilder WithSellInOf(int sellIn)
-        {
-            _item.SellIn = sellIn;
-            return this;
-        }
-
-        public Item Build()
-        {
-            return _item;
-        }
-    }
-
 }
