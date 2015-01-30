@@ -4,7 +4,7 @@ namespace GildedRose.Tests
 {
     public class ItemBuilder
     {
-        private Item _item;
+        private StoreItem _item;
 
         public static ItemBuilder DefaultItem()
         {
@@ -13,7 +13,7 @@ namespace GildedRose.Tests
 
         public ItemBuilder()
         {
-            _item = new Item();
+            _item = new StoreItem(new Item());
             _item.Name = "+5 Dexterity Vest";
             _item.Quality = 20;
             _item.SellIn = 10;
@@ -49,7 +49,7 @@ namespace GildedRose.Tests
             return this;
         }
 
-        public Item Build()
+        public StoreItem Build()
         {
             return _item;
         }
