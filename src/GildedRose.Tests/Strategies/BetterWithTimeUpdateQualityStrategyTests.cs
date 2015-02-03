@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using GildedRose.Console;
 using NUnit.Framework;
 
 namespace GildedRose.Tests.Strategies
@@ -11,6 +12,8 @@ namespace GildedRose.Tests.Strategies
     [TestFixture]
     public class BetterWithTimeUpdateQualityStrategyTests : BaseStrategyTest
     {
+        private IUpdateQualityStrategy _updateQualityStrategy = new BetterWithTimeUpdateQualityStrategy();
+
         [Test]
         public void UpdateItemQuality_AgedBrie_QualityShouldIncrease()
         {
@@ -23,7 +26,7 @@ namespace GildedRose.Tests.Strategies
 
             var startingQuality = agedBrie.Quality;
 
-            agedBrie.UpdateItemQuality();
+            _updateQualityStrategy.UpdateQuality(agedBrie);
 
             Assert.That(agedBrie.Quality, Is.EqualTo(startingQuality + 1));
         }
@@ -39,7 +42,7 @@ namespace GildedRose.Tests.Strategies
                 .ItemAsAgedBrie()
                 .Build();
 
-            agedBrie.UpdateItemQuality();
+            _updateQualityStrategy.UpdateQuality(agedBrie);
 
             Assert.That(agedBrie.Quality, Is.EqualTo(SYSTEM_MAX_Quality));
         }
@@ -47,7 +50,6 @@ namespace GildedRose.Tests.Strategies
         [Test]
         public void UpdateItemQuality_AgedBrieAfterSellin_QualityIncreaseBy2()
         {
-
             var agedBrie = ItemBuilder.DefaultItem()
                 .WithQualityOf(0)
                 .WithSellInOf(0)
@@ -56,7 +58,7 @@ namespace GildedRose.Tests.Strategies
 
             var startingQuality = agedBrie.Quality;
 
-            agedBrie.UpdateItemQuality();
+            _updateQualityStrategy.UpdateQuality(agedBrie);
 
             Assert.That(agedBrie.Quality, Is.EqualTo(startingQuality + 2));
         }

@@ -45,6 +45,8 @@
     <Compile Include="ItemBuilder.cs" />
     <Compile Include="ItemQualityServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Strategies\BetterWithTimeUpdateQualityStrategyTests.cs" />
+    <Compile Include="Strategies\DefaultUpdateQualityStrategyTests.cs" />
     <Compile Include="TestAssemblyTests.cs" />
   </ItemGroup>
   <ItemGroup>

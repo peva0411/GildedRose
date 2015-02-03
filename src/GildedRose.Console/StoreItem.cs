@@ -5,25 +5,6 @@ using System.Text;
 
 namespace GildedRose.Console
 {
-
-    public interface IUpdateQualityStrategy
-    {
-        void UpdateQuality(StoreItem storeItem);
-    }
-
-    public class BetterWithTimeUpdateQualityStrategy : IUpdateQualityStrategy
-    {
-        public void UpdateQuality(StoreItem storeItem)
-        {
-            if (storeItem.Quality < 50)
-            {
-                storeItem.Quality++;
-            }
-            storeItem.SellIn--;
-        }
-    }
-
-
     public class StoreItem
     {
         private readonly Item _item;
